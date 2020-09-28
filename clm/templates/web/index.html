@@ -1,0 +1,62 @@
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{% block title %} | Contacts Flask {% endblock %}</title>
+	<link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+	<link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
+  </head>
+  <body style="background-color:rgb(5, 65, 81);">
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+		<div class="navbar-header">
+		  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		  </button>
+		  <a class="navbar-brand" href="/">Contact Manager</a>
+		</div>
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<form action="{{ url_for('contacts_search', name=name) }}" method="GET" class="navbar-form navbar-left">
+			<div class="form-group">
+			  <input type="text" name="search" class="form-control" placeholder="Name..."  />
+			</div>
+			<button type="submit" class="btn btn-default">Search</button>
+		  </form>
+		  <ul class="nav navbar-nav navbar-right">
+			<li><a href="{{ url_for('portfolio') }}">Guillermo's Portfolio</a></li>
+			  <li><a href="{{ url_for('new_contact') }}">Add Contact</a></li>
+			  <li><a href="{{ url_for('display_contacts') }}">View Contacts</a></li>
+		  </ul>
+		</div>
+	  </div>
+	</nav>
+	<div class="container" >
+		{# Flashed messages #}
+		{% with messages = get_flashed_messages(with_categories=true) %}
+		  {% if messages %}
+			{% for category, message in messages %}
+			  <div class="alert alert-{{ category }}" role="alert">{{ message }}</div>
+			{% endfor %}
+		  {% endif %}
+		{% endwith %}
+		{# End Flashed messages #}
+		<a href="https://www.two.fish/">
+			<img src="/static/images/tfc_web_logo.png" alt="Two Fish Logo" style="width:600;height:300; position: relative;">
+		  </a>
+		  <br>
+		  <br>
+		  <h1 style="color: aliceblue;">Welcome to Guillermo's Contact Manager</h1>
+		  <br>
+    <script src="{{ url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap-confirmation.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  </body>
+</html>
+{% endblock %}

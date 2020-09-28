@@ -1,0 +1,5 @@
+Flask==1.0
+Flask-SQLAlchemy==2.2
+gunicorn
+wtforms==2.3.3
+Flask-Marshmallow
